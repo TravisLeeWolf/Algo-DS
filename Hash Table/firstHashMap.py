@@ -1,16 +1,23 @@
 class MyHashMap:
 
     def __init__(self):
-        pass      
-
-    def put(self, key: int, value: int) -> None:
-        pass
+        self.map = []   
 
     def get(self, key: int) -> int:
-        pass
+        for value in self.map:
+            if key == value[0]:
+                return 1
+        return -1
 
     def remove(self, key: int) -> None:
         pass
+
+    def put(self, key: int, value: int) -> None:
+        if self.get(key) == 1:
+            print("Replace")
+        else:
+            self.map.append([key, value])
+            print(self.map)
 
 
 # Your MyHashMap object will be instantiated and called as such:
