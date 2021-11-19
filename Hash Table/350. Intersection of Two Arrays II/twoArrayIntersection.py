@@ -1,19 +1,25 @@
 class Solution:
     def intersect(self, nums1: "list[int]", nums2: "list[int]") -> "list[int]":
-        intersect = []
-        if len(nums1) > len(nums2):
-            longNumber = nums1
-            shortNumber = nums2
-        else:
-            longNumber = nums2
-            shortNumber = nums1
-        
-        for x in longNumber:
-            for y in shortNumber:
-                if y == x:
-                    intersect.append(y)
+        intersection = []
+        xCounter = 0
+        yCounter = 0
+    
+        for x in range(len(nums1)):
+            xCounter = x
+            check = []
+            for y in range(len(nums2)):
+                yCounter = y
+                while nums1[xCounter] == nums2[yCounter]:
+                    check.append(nums1[xCounter])
+                    if xCounter < len(nums1) - 1:
+                        xCounter += 1
+                    if yCounter < len(nums2):
+                        yCounter += 1
+                if len(check) > len(intersection) - 1:
+                    intersection = check
+                    
 
-        return intersect
+        return intersection
 
 check = Solution()
-print(check.intersect(nums1=[1,2,2,1], nums2=[2,2]))
+print(check.intersect(nums1=[4,9,5], nums2=[9,4,9,8,4]))
