@@ -1,22 +1,19 @@
 class Solution:
     def intersect(self, nums1: "list[int]", nums2: "list[int]") -> "list[int]":
         intersection = []
-        xCounter = 0
-        yCounter = 0
+        nums1.sort()
+        nums2.sort()
     
-        for x in range(len(nums1)):
-            xCounter = x
-            check = []
-            for y in range(len(nums2)):
-                yCounter = y
-                while nums1[xCounter] == nums2[yCounter]:
-                    check.append(nums1[xCounter])
-                    if xCounter < len(nums1) - 1:
-                        xCounter += 1
-                    if yCounter < len(nums2):
-                        yCounter += 1
-                if len(check) > len(intersection) - 1:
-                    intersection = check
+        i, j = 0, 0
+        while i < len(nums1) and j < len(nums2):
+            if nums1[i] < nums2[j]:
+                i += 1
+            elif nums2[j] < nums1[i]:
+                j += 1
+            elif nums1[i] == nums2[j]:
+                intersection.append(nums1[i])
+                i += 1
+                j += 1
                     
 
         return intersection
